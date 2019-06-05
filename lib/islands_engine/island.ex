@@ -1,10 +1,14 @@
 defmodule IslandsEngine.Island do
+  @moduledoc """
+  Provides a set of functions to work with islands
+  """
+
   alias IslandsEngine.{Coordinate, Island}
 
   @enforce_keys [:coordinates, :hit_coordinates]
   defstruct [:coordinates, :hit_coordinates]
 
-  def new(), do: %Island{coordinates: MapSet.new(), hit_coordinates: MapSet.new()}
+  def new, do: %Island{coordinates: MapSet.new(), hit_coordinates: MapSet.new()}
 
   def new(type, %Coordinate{} = upper_left) do
     with [_ | _] = offsets <- offsets(type),
@@ -54,5 +58,5 @@ defmodule IslandsEngine.Island do
 
   def forested?(island), do: MapSet.equal?(island.coordinates, island.hit_coordinates)
 
-  def types(), do: [:atoll, :dot, :l_shape, :s_shape, :square]
+  def types, do: [:atoll, :dot, :l_shape, :s_shape, :square]
 end

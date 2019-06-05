@@ -1,6 +1,10 @@
 defmodule IslandsEngine.Game do
+  @moduledoc """
+  Provides the public interface for the game as a GenServer
+  """
+
   use GenServer
-  alias IslandsEngine.{Board, Guesses, Rules}
+  alias IslandsEngine.{Board, Coordinate, Guesses, Island, Rules}
 
   def start_link(name) when is_binary(name) do
     GenServer.start_link(__MODULE__, name, [])

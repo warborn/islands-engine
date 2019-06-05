@@ -1,10 +1,14 @@
 defmodule IslandsEngine.Guesses do
+  @moduledoc """
+  Provides a set of functions to hold the list of guessed and missed coordinates
+  """
+
   alias IslandsEngine.{Coordinate, Guesses}
 
   @enforce_keys [:hits, :misses]
   defstruct [:hits, :misses]
 
-  def new(), do: %Guesses{hits: MapSet.new(), misses: MapSet.new()}
+  def new, do: %Guesses{hits: MapSet.new(), misses: MapSet.new()}
 
   def add(%Guesses{} = guesses, :hit, %Coordinate{} = coordinate),
     do: update_in(guesses.hits, &MapSet.put(&1, coordinate))

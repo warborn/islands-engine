@@ -1,11 +1,15 @@
 defmodule IslandsEngine.Rules do
+  @moduledoc """
+  Provides the functions to enforce the rules of the game
+  """
+
   alias __MODULE__
 
   defstruct state: :initialized,
             player1: :islands_not_set,
             player2: :islands_not_set
 
-  def new(), do: %Rules{}
+  def new, do: %Rules{}
 
   def check(%Rules{state: :initialized} = rules, :add_player),
     do: {:ok, %Rules{rules | state: :players_set}}

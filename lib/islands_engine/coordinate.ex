@@ -1,4 +1,8 @@
 defmodule IslandsEngine.Coordinate do
+  @moduledoc """
+  Defines the structure of a coordinate in a board
+  """
+
   alias __MODULE__
 
   @board_range 1..10
