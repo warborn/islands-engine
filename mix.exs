@@ -8,7 +8,13 @@ defmodule IslandsEngine.MixProject do
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      dialyzer: [
+        plt_add_deps: :apps_direct
+      ],
+      preferred_cli_env: [
+        validate: :test
+      ]
     ]
   end
 
@@ -23,13 +29,18 @@ defmodule IslandsEngine.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.20.2", only: [:dev], runtime: false},
+      {:inch_ex, "~> 2.0", only: [:dev, :test], runtime: false}
     ]
   end
 
   defp aliases do
     [
-      lint: "credo --strict"
+      lint: "credo --strict",
+      dyz: "dialyzer --format dialyxir",
+      validate: ["dyz", "lint", "inch", "test"]
     ]
   end
 end
