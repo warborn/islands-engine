@@ -14,7 +14,12 @@ defmodule IslandsEngine.MixProject do
       ],
       preferred_cli_env: [
         validate: :test
-      ]
+      ],
+
+      # Docs
+      name: "Islands Engine",
+      source_url: "https://github.com/warborn/islands-engine",
+      docs: []
     ]
   end
 
@@ -39,8 +44,8 @@ defmodule IslandsEngine.MixProject do
   defp aliases do
     [
       lint: "credo --strict",
-      dyz: "dialyzer --format dialyxir",
-      validate: ["dyz", "lint", "inch", "test"]
+      dialyze: "dialyzer --format dialyxir",
+      validate: ["test", "dialyze", "lint", "inch"]
     ]
   end
 end
