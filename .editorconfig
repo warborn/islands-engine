@@ -1,0 +1,7 @@
+# Based on https://EditorConfig.org
+root = true
+
+[*.{ex,exs}]
+indent_style = space
+indent_size = 2
+charset = utf-8
