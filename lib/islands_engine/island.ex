@@ -1,6 +1,6 @@
 defmodule IslandsEngine.Island do
   @moduledoc """
-  Provides a set of functions to work with islands
+  Provides a set of functions to work with islands.
   """
 
   alias IslandsEngine.{Coordinate, Island}

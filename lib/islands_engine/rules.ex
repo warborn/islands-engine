@@ -1,6 +1,7 @@
 defmodule IslandsEngine.Rules do
   @moduledoc """
   Provides the functions to enforce the rules of the game
+  by using a finite state machine.
   """
 
   alias __MODULE__

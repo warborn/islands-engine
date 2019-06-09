@@ -1,6 +1,6 @@
 defmodule IslandsEngine.Game do
   @moduledoc """
-  Provides the public interface for the game as a GenServer
+  Provides the public interface for the game as a GenServer.
   """
 
   use GenServer

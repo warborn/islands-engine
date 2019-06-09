@@ -1,6 +1,6 @@
 defmodule IslandsEngine.Coordinate do
   @moduledoc """
-  Defines the structure of a coordinate in a board
+  Defines the structure of a coordinate in a board.
   """
 
   alias __MODULE__
@@ -10,8 +10,10 @@ defmodule IslandsEngine.Coordinate do
   @enforce_keys [:row, :col]
   defstruct [:row, :col]
 
+  @type coordinate :: %Coordinate{row: integer(), col: integer()}
+
   @doc ~S"""
-  Creates a new Coordinate map instance based on the given row and column.
+  Creates a new `IslandsEngine.Coordinate` map instance based on the given row and column.
 
   ## Examples
 

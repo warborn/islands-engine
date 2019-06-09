@@ -1,6 +1,6 @@
 defmodule IslandsEngine.Guesses do
   @moduledoc """
-  Provides a set of functions to hold the list of guessed and missed coordinates
+  Provides a set of functions manage the hits and misses of coordinates in the game.
   """
 
   alias IslandsEngine.{Coordinate, Guesses}
@@ -8,10 +8,32 @@ defmodule IslandsEngine.Guesses do
   @enforce_keys [:hits, :misses]
   defstruct [:hits, :misses]
 
-  @spec new() :: %Guesses{hits: MapSet.t(), misses: MapSet.t()}
+  @type guesses :: %Guesses{hits: MapSet.t(), misses: MapSet.t()}
+
+  @doc """
+  Creates a new `IslandsEngine.Guesses` map with a key of `hits` and `misses` implemented as a `MapSet`.
+
+  ## Examples:
+
+      iex> IslandsEngine.Guesses.new()
+      %IslandsEngine.Guesses{hits: MapSet.new(), misses: MapSet.new()}
+
+  """
+
+  @spec new() :: guesses()
   def new, do: %Guesses{hits: MapSet.new(), misses: MapSet.new()}
 
-  @spec add(%Guesses{}, atom(), %Coordinate{}) :: %Guesses{}
+  @doc """
+  Add a new coordinate as a **hit** or a **miss**.
+
+  ## Examples:
+
+      IslandsEngine.Guesses.add(guesses, :hit, coordinate)
+      IslandsEngine.Guesses.add(guesses, :miss, coordinate)
+
+  """
+
+  @spec add(guesses(), atom(), Coordinate.t()) :: guesses()
   def add(%Guesses{} = guesses, :hit, %Coordinate{} = coordinate),
     do: update_in(guesses.hits, &MapSet.put(&1, coordinate))
 

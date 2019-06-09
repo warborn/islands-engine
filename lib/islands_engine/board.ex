@@ -1,6 +1,6 @@
 defmodule IslandsEngine.Board do
   @moduledoc """
-  Provides a set of functions to work with the board of the game
+  Provides a set of functions to work with the board of the game.
   """
 
   alias IslandsEngine.{Coordinate, Island}
