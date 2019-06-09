@@ -10,7 +10,7 @@ defmodule IslandsEngine.Coordinate do
   @enforce_keys [:row, :col]
   defstruct [:row, :col]
 
-  @type coordinate :: %Coordinate{row: integer(), col: integer()}
+  @type t :: %Coordinate{row: integer(), col: integer()}
 
   @doc ~S"""
   Creates a new `IslandsEngine.Coordinate` map instance based on the given row and column.

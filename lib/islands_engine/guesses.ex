@@ -28,8 +28,8 @@ defmodule IslandsEngine.Guesses do
 
   ## Examples:
 
-      IslandsEngine.Guesses.add(guesses, :hit, coordinate)
-      IslandsEngine.Guesses.add(guesses, :miss, coordinate)
+      add(guesses, :hit, coordinate)
+      add(guesses, :miss, coordinate)
 
   """
 
