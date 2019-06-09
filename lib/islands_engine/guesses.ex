@@ -10,13 +10,13 @@ defmodule IslandsEngine.Guesses do
 
   @type guesses :: %Guesses{hits: MapSet.t(), misses: MapSet.t()}
 
-  @doc """
+  @doc ~S"""
   Creates a new `IslandsEngine.Guesses` map with a key of `hits` and `misses` implemented as a `MapSet`.
 
   ## Examples:
 
-      iex> IslandsEngine.Guesses.new()
-      %IslandsEngine.Guesses{hits: MapSet.new(), misses: MapSet.new()}
+      new()
+      %Guesses{hits: MapSet.new(), misses: MapSet.new()}
 
   """
 

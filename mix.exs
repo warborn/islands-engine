@@ -13,7 +13,8 @@ defmodule IslandsEngine.MixProject do
         plt_add_deps: :apps_direct
       ],
       preferred_cli_env: [
-        validate: :test
+        validate: :test,
+        espec: :test
       ],
 
       # Docs
@@ -36,6 +37,7 @@ defmodule IslandsEngine.MixProject do
     [
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
+      {:espec, "~> 1.7", only: [:test], runtime: false},
       {:ex_doc, "~> 0.20.2", only: [:dev], runtime: false},
       {:inch_ex, "~> 2.0", only: [:dev, :test], runtime: false}
     ]
@@ -45,7 +47,7 @@ defmodule IslandsEngine.MixProject do
     [
       lint: "credo --strict",
       dialyze: "dialyzer --format dialyxir",
-      validate: ["test", "dialyze", "lint", "inch"]
+      validate: ["dialyze", "lint", "inch", "espec"]
     ]
   end
 end
