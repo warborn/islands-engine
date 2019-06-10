@@ -7,13 +7,13 @@ defmodule IslandsEngine.CoordinateSpec do
   describe "Creating a new coordinate" do
     context "with valid a row and column" do
       it "should return a Coordinate map" do
-        expect(Coordinate.new(1, 1) |> to(match_pattern({:ok, %Coordinate{}})))
+        expect Coordinate.new(1, 1) |> to(match_pattern({:ok, %Coordinate{}}))
       end
     end
 
     context "with invalid row and column " do
       it "should return an error" do
-        expect(Coordinate.new(11, 11) |> to(match_pattern({:error, :invalid_coordinate})))
+        expect Coordinate.new(11, 11) |> to(be_error_result())
       end
     end
   end

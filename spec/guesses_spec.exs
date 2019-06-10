@@ -6,7 +6,7 @@ defmodule IslandsEngine.GuessesSpec do
 
   describe "Creating a new Guesses structure" do
     it "should return a Guesses structure with hits and misses" do
-      expect(Guesses.new() |> to(match_pattern(%Guesses{})))
+      expect Guesses.new() |> to(be_struct Guesses)
     end
   end
 
@@ -16,11 +16,9 @@ defmodule IslandsEngine.GuessesSpec do
         guesses = Guesses.new()
         {:ok, coordinate} = Coordinate.new(1, 1)
 
-        expect(
-          Guesses.add(guesses, :hit, coordinate)
-          |> Map.get(:hits)
-          |> to(have_count(1))
-        )
+        expect Guesses.add(guesses, :hit, coordinate)
+               |> Map.get(:hits)
+               |> to(have_count 1)
       end
     end
 
@@ -29,11 +27,9 @@ defmodule IslandsEngine.GuessesSpec do
         guesses = Guesses.new()
         {:ok, coordinate} = Coordinate.new(1, 1)
 
-        expect(
-          Guesses.add(guesses, :miss, coordinate)
-          |> Map.get(:misses)
-          |> to(have_count(1))
-        )
+        expect Guesses.add(guesses, :miss, coordinate)
+               |> Map.get(:misses)
+               |> to(have_count 1)
       end
     end
   end
