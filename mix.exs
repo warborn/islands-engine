@@ -14,13 +14,23 @@ defmodule IslandsEngine.MixProject do
       ],
       preferred_cli_env: [
         validate: :test,
-        espec: :test
+        espec: :test,
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
       ],
 
       # Docs
       name: "Islands Engine",
       source_url: "https://github.com/warborn/islands-engine",
-      docs: []
+      docs: [],
+
+      # Testing
+      test_coverage: [
+        tool: ExCoveralls,
+        test_task: "espec"
+      ]
     ]
   end
 
@@ -37,6 +47,7 @@ defmodule IslandsEngine.MixProject do
     [
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.11.1", only: [:test], runtime: false},
       {:espec, "~> 1.7", only: [:test], runtime: false},
       {:ex_doc, "~> 0.20.2", only: [:dev], runtime: false},
       {:inch_ex, "~> 2.0", only: [:dev, :test], runtime: false}
@@ -47,7 +58,7 @@ defmodule IslandsEngine.MixProject do
     [
       lint: "credo --strict",
       dialyze: "dialyzer --format dialyxir",
-      validate: ["dialyze", "lint", "inch", "espec"]
+      validate: ["dialyze", "lint", "inch", "coveralls"]
     ]
   end
 end
