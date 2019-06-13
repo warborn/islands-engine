@@ -1,4 +1,6 @@
 defmodule IslandsEngine.GuessesSpec do
+  @moduledoc false
+
   use ESpec, async: true
   doctest IslandsEngine.Guesses
 
@@ -13,10 +15,10 @@ defmodule IslandsEngine.GuessesSpec do
   describe "Guessing a coordinate" do
     context "as a hit" do
       it "should add the coordinate to the set of hits" do
-        guesses = Guesses.new()
         {:ok, coordinate} = Coordinate.new(1, 1)
 
-        expect Guesses.add(guesses, :hit, coordinate)
+        expect Guesses.new()
+               |> Guesses.add(:hit, coordinate)
                |> Map.get(:hits)
                |> to(have_count 1)
       end
@@ -24,10 +26,10 @@ defmodule IslandsEngine.GuessesSpec do
 
     context "as a miss" do
       it "should add the coordinate to the set of misses" do
-        guesses = Guesses.new()
         {:ok, coordinate} = Coordinate.new(1, 1)
 
-        expect Guesses.add(guesses, :miss, coordinate)
+        expect Guesses.new()
+               |> Guesses.add(:miss, coordinate)
                |> Map.get(:misses)
                |> to(have_count 1)
       end
