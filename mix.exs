@@ -30,6 +30,7 @@ defmodule IslandsEngine.MixProject do
       # Testing
       test_coverage: [
         tool: ExCoveralls,
+        output: "coverage",
         test_task: "espec"
       ]
     ]
@@ -59,6 +60,7 @@ defmodule IslandsEngine.MixProject do
     [
       lint: "credo --strict",
       dialyze: "dialyzer --format dialyxir",
+      specs: "espec --trace",
       coverage: "coveralls",
       validate: ["dialyze", "lint", "inch", "coverage"]
     ]
