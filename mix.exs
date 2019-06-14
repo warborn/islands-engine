@@ -14,6 +14,7 @@ defmodule IslandsEngine.MixProject do
       ],
       preferred_cli_env: [
         validate: :test,
+        coverage: :test,
         espec: :test,
         coveralls: :test,
         "coveralls.detail": :test,
@@ -58,7 +59,8 @@ defmodule IslandsEngine.MixProject do
     [
       lint: "credo --strict",
       dialyze: "dialyzer --format dialyxir",
-      validate: ["dialyze", "lint", "inch", "coveralls"]
+      coverage: "coveralls",
+      validate: ["dialyze", "lint", "inch", "coverage"]
     ]
   end
 end
