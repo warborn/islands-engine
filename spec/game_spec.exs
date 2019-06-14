@@ -18,7 +18,7 @@ defmodule IslandsEngine.GameSpec do
         player_name = "player2"
         :ok = Game.add_player(shared.game, player_name)
 
-        expect get_state(shared.game) |> Map.get(:player2) |> to(have name: player_name)
+        expect shared.game |> get_state() |> Map.get(:player2) |> to(have name: player_name)
       end
     end
 
@@ -26,7 +26,7 @@ defmodule IslandsEngine.GameSpec do
       it "should return an error" do
         :ok = Game.add_player(shared.game, "player2")
 
-        expect Game.add_player(shared.game, "player3") |> to(eq :error)
+        expect shared.game |> Game.add_player("player3") |> to(eq :error)
       end
     end
   end
