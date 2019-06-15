@@ -116,6 +116,59 @@ defmodule IslandsEngine.GameSpec do
     end
   end
 
+  describe "Guessing a coordinate" do
+    before do
+      Game.add_player(shared.game, "player2")
+      Game.position_island(shared.game, :player1, :dot, 1, 1)
+      Game.position_island(shared.game, :player2, :square, 1, 1)
+      update_rules_state(shared.game, :player1_turn)
+
+      {:shared, game: shared.game}
+    end
+
+    context "when it's not the turn of player two" do
+      it "should return an error if player two tries to guess" do
+        expect shared.game
+               |> Game.guess_coordinate(:player2, 1, 1)
+               |> to(eq :error)
+      end
+    end
+
+    context "when the coordinate is invalid" do
+      it "should return an :invalid_coordinate error" do
+        expect shared.game
+               |> Game.guess_coordinate(:player1, 11, 11)
+               |> to(match_pattern {:error, :invalid_coordinate})
+      end
+    end
+
+    context "when the coordinate is a miss" do
+      it "result in a miss" do
+        expect shared.game
+               |> Game.guess_coordinate(:player1, 5, 5)
+               |> to(match_pattern {:miss, :none, :no_win})
+      end
+    end
+
+    context "when the coordinate is a hit" do
+      it "result in a hit" do
+        expect shared.game
+               |> Game.guess_coordinate(:player1, 1, 1)
+               |> to(match_pattern {:hit, :none, :no_win})
+      end
+    end
+
+    context "when the coordinate hit the last island left" do
+      it "result in player winning the game" do
+        update_rules_state(shared.game, :player2_turn)
+
+        expect shared.game
+               |> Game.guess_coordinate(:player2, 1, 1)
+               |> to(match_pattern {:hit, :dot, :win})
+      end
+    end
+  end
+
   defp get_state(process), do: :sys.get_state(process)
 
   defp update_rules_state(game, rules_new_state) do
