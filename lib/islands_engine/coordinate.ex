@@ -10,6 +10,10 @@ defmodule IslandsEngine.Coordinate do
   @enforce_keys [:row, :col]
   defstruct [:row, :col]
 
+  @typedoc """
+  Type that represents the `IslandsEngine.Coordinate` struct.
+  """
+
   @type t :: %Coordinate{row: integer(), col: integer()}
 
   @doc ~S"""
@@ -27,7 +31,7 @@ defmodule IslandsEngine.Coordinate do
 
   """
 
-  @spec new(integer(), integer()) :: tuple()
+  @spec new(integer(), integer()) :: {:ok, Coordinate.t()} | {:error, atom()}
   def new(row, col) when row in @board_range and col in @board_range do
     {:ok, %Coordinate{row: row, col: col}}
   end
