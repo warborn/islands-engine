@@ -115,6 +115,13 @@ defmodule IslandsEngine.Game do
     {:noreply, state, @timeout}
   end
 
+  def terminate({:shutdown, :timeout}, state) do
+    :ets.delete(:islands_game_state, state.player1.name)
+    :ok
+  end
+
+  def terminate(_reason, _state), do: :ok
+
   defp update_player2_name(state, name) do
     put_in(state.player2.name, name)
   end
