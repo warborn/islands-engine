@@ -7,9 +7,15 @@ defmodule IslandsEngine.GameSpec do
   alias IslandsEngine.{Game, Rules}
 
   before do
-    {:ok, game} = Game.start_link("player1")
-
+    {:ok, game} = Game.start_link("player#{:rand.uniform(1000)}")
     {:ok, game: game}
+  end
+
+  describe "Getting a process registry tuple" do
+    it "should return a tuple with a :via property and the given name" do
+      process_name = "game"
+      expect process_name |> Game.via_tuple() |> to(match_pattern {:via, _, {_, ^process_name}})
+    end
   end
 
   describe "Adding a second player" do
